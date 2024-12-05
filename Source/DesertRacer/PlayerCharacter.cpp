@@ -59,8 +59,22 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 		if (abs(MoveActionValue.Y) > 0) {
 			float DeltaTime = GetWorld()->DeltaTimeSeconds;
 
+			// Rotation
+			if (abs(MoveActionValue.X) > 0) {
+				float RotationAmount = RotationSpeed * MoveActionValue.X * DeltaTime;
+				AddActorWorldRotation(FRotator(-RotationAmount, 0.0f, 0.0f));
+			}
+
+
+			// Movement
+			float FinalMovementSpeed = MovementSpeed;
+			if (MoveActionValue.Y < 0)
+			{
+				FinalMovementSpeed *= 0.5f;
+			}
+
 			FVector CurrentLocation = GetActorLocation();
-			FVector DistanceToMove = GetActorUpVector() * MovementSpeed * MoveActionValue.Y * DeltaTime;
+			FVector DistanceToMove = GetActorUpVector() * FinalMovementSpeed * MoveActionValue.Y * DeltaTime;
 
 			FVector NewLocation = CurrentLocation + DistanceToMove;
 			SetActorLocation(NewLocation);
