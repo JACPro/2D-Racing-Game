@@ -43,6 +43,15 @@ public:
 	UPROPERTY(EditAnywhere, BlueprintReadOnly)
 	UInputAction* MoveAction;
 
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float MovementSpeed = 1000.0f;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	float RotationSpeed = 100.0f;
+
+	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
+	bool CanMove = true;
+
 	APlayerCharacter();
 
 	virtual void BeginPlay() override;
