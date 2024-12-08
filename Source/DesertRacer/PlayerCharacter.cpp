@@ -62,6 +62,10 @@ void APlayerCharacter::Move(const FInputActionValue& Value)
 			// Rotation
 			if (abs(MoveActionValue.X) > 0) {
 				float RotationAmount = RotationSpeed * MoveActionValue.X * DeltaTime;
+				if (MoveActionValue.Y < 0) {
+					// Reversed rotation when reversing
+					RotationAmount *= -1;
+				}
 				AddActorWorldRotation(FRotator(-RotationAmount, 0.0f, 0.0f));
 			}
 
