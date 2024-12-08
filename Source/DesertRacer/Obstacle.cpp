@@ -35,7 +35,10 @@ void AObstacle::OverlapBegin(UPrimitiveComponent* OverlappedComponent, AActor* O
 	APlayerCharacter* Player = Cast<APlayerCharacter>(OtherActor);
 	if (Player && Player->CanMove) {
 		Player->CanMove = false;
-		RacerGameMode->ResetLevel(false);
+
+		UGameplayStatics::PlaySound2D(GetWorld(), HitSound);
+
+		RacerGameMode->ResetLevel(IsFinishLine);
 	}
 }
 

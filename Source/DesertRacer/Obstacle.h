@@ -5,6 +5,9 @@
 
 #include "Components/CapsuleComponent.h"
 #include "PaperSpriteComponent.h"
+
+#include "Sound/SoundBase.h"
+
 #include "RacerGameMode.h"
 
 #include "Obstacle.generated.h"
@@ -20,6 +23,12 @@ public:
 
 	UPROPERTY(VisibleAnywhere, BlueprintReadWrite)
 	UPaperSpriteComponent* ObstacleSprite;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	USoundBase* HitSound;
+
+	UPROPERTY(EditAnywhere, BlueprintReadWrite)
+	bool IsFinishLine = false;
 
 	ARacerGameMode* RacerGameMode;
 
